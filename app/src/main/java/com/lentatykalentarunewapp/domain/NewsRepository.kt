@@ -1,7 +1,7 @@
 package com.lentatykalentarunewapp.domain
 
-import com.lentatykalentarunewapp.data.network.dto.NewsDto
+import com.lentatykalentarunewapp.domain.model.News
 
 interface NewsRepository {
-    suspend fun getNews(): NewsDto
+    suspend fun getNews(): News
 }

@@ -1,15 +1,11 @@
 package com.lentatykalentarunewapp.data
 
-import com.lentatykalentarunewapp.common.Constants
-import com.lentatykalentarunewapp.data.network.NewsApi
-import com.lentatykalentarunewapp.data.network.dto.NewsDto
 import com.lentatykalentarunewapp.domain.NewsRepository
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.lentatykalentarunewapp.domain.model.News
 
 class NewsRepositoryImpl : NewsRepository {
 
-    override suspend fun getNews(): NewsDto {
+    override suspend fun getNews(): News {
         TODO()
     }
 }
