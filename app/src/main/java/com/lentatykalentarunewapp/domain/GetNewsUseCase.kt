@@ -4,8 +4,9 @@ import com.lentatykalentarunewapp.common.State
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
-class GetNewsUseCase (
+class GetNewsUseCase @Inject constructor(
     private val repository: NewsRepository
     ) {
     operator fun invoke() = flow {

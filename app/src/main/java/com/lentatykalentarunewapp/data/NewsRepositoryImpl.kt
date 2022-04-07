@@ -4,18 +4,17 @@ import com.lentatykalentarunewapp.common.Constants
 import com.lentatykalentarunewapp.data.network.NewsApi
 import com.lentatykalentarunewapp.domain.NewsRepository
 import com.lentatykalentarunewapp.domain.model.News
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class NewsRepositoryImpl(
+class NewsRepositoryImpl @Inject constructor(
+    private val mapper: Mapper,
+    private val newsApi: NewsApi
 ) : NewsRepository {
-    private val mapper: Mapper = Mapper()
-    private val newsApi: NewsApi = Retrofit.Builder()
-        .baseUrl(Constants.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(NewsApi::class.java)
+
     override suspend fun getNews(): News {
-        return mapper.mapNewsDtoToNews(newsApi.getNews(Constants.API_KEY))
+        return mapper.mapNewsDtoToNews(
+            newsApi.getNews(Constants.API_KEY)
+        )
     }
+
 }
