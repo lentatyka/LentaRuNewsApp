@@ -11,44 +11,45 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="6dp">
+        app:cardCornerRadius="6dp"
+        android:layout_marginBottom="8dp">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="TEST" />
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_light">
 
             <ImageView
                 android:id="@+id/iv_news_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                app:imageUrl= "@{article.urlToImage}"
+                app:error="@{@drawable/ic_error}"
+                app:loading="@{@drawable/ic_loading}"
+                android:contentDescription="@string/news_image"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title"
-                tools:srcCompat="@tools:sample/avatars"
-                android:contentDescription="@string/news_image" />
-
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
             <TextView
-                android:id="@+id/tv_author"
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@{article.title}"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_news_image"
-                tools:text="Author" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="TEST" />
 
             <TextView
                 android:id="@+id/tv_published_time"
+                android:text="@{@string/published_time(article.publishedAt)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_author"
+                android:textColor="@color/white"
                 tools:text="12:00" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
