@@ -1,17 +1,20 @@
 package com.lentatykalentarunewapp.presentation
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.lentatykalentarunewapp.common.State
+import com.lentatykalentarunewapp.data.NewsRepositoryImpl
+import com.lentatykalentarunewapp.domain.GetNewsUseCase
 import com.lentatykalentarunewapp.domain.model.News
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 
-class MainViewModel(
-    private val getNewsUseCase: GetNewsUseCase
-    ) : ViewModel() {
+class MainViewModel: ViewModel() {
     private val _state: MutableStateFlow<State<News>> = MutableStateFlow(State.Loading)
     val state: StateFlow<State<News>> = _state.asStateFlow()
+
+    private val getNewsUseCase = GetNewsUseCase(
+        NewsRepositoryImpl()
+    )
 
     init {
         //when init State.Loading will be duplicated. Bad idea... What about

@@ -7,10 +7,9 @@ import com.lentatykalentarunewapp.domain.model.News
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.inject.Inject
 
 
-class Mapper @Inject constructor(){
+class Mapper {
     fun mapNewsDtoToNews(newsDto: NewsDto) = News(
         articles = newsDto.articles.map {
             Article(

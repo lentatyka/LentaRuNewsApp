@@ -12,11 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lentatykalentarunewapp.R
 import com.lentatykalentarunewapp.common.State
 import com.lentatykalentarunewapp.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
@@ -49,10 +47,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }.launchIn(lifecycleScope)
-    }
-
-    private fun showError(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     private fun showError(message: String) {
