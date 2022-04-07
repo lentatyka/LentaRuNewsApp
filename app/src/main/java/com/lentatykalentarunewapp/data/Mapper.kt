@@ -4,14 +4,16 @@ import android.annotation.SuppressLint
 import com.lentatykalentarunewapp.data.network.dto.NewsDto
 import com.lentatykalentarunewapp.domain.model.Article
 import com.lentatykalentarunewapp.domain.model.News
+import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.*
+import javax.inject.Inject
 
 
-class Mapper {
+class Mapper @Inject constructor(){
     fun mapNewsDtoToNews(newsDto: NewsDto) = News(
         articles = newsDto.articles.map {
             Article(
-                author = it.author,
                 publishedAt = formatDateFromString(it.publishedAt),
                 title = it.title,
                 url = it.url,
@@ -22,6 +24,12 @@ class Mapper {
 
     @SuppressLint("SimpleDateFormat")
     private fun formatDateFromString(dateString: String):String{
-        return SimpleDateFormat("EEE, MMM d, ''yy").format(dateString)
+        return try {
+            val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX", Locale.getDefault())
+            val formatter = SimpleDateFormat("EEE, MMM d, ''yy", Locale.getDefault())
+            formatter.format(parser.parse(dateString))
+        }catch (e: ParseException){
+            "unknown"
+        }
     }
 }
