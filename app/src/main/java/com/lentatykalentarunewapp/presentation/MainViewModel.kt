@@ -1,6 +1,5 @@
 package com.lentatykalentarunewapp.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lentatykalentarunewapp.common.State
@@ -8,7 +7,6 @@ import com.lentatykalentarunewapp.domain.GetNewsUseCase
 import com.lentatykalentarunewapp.domain.model.News
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

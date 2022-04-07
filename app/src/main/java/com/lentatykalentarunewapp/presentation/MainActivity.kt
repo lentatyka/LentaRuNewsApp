@@ -1,8 +1,11 @@
 package com.lentatykalentarunewapp.presentation
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,21 +35,38 @@ class MainActivity : AppCompatActivity() {
 
     private fun setViewModel() {
             viewModel.state.onEach {state ->
-                if(state is State.Success){
-                    newsAdapter.submitList(state.result.articles)
+                when(state){
+                    is State.Loading ->{
+                        binding.swipeLayout.isRefreshing = true
+                    }
+                    is State.Error ->{
+                        binding.swipeLayout.isRefreshing = false
+                        showError(state.message)
+                    }
+                    is State.Success ->{
+                        binding.swipeLayout.isRefreshing = false
+                        newsAdapter.submitList(state.result.articles)
+                    }
                 }
             }.launchIn(lifecycleScope)
     }
 
+    private fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
     private fun setAdapter() {
-        newsAdapter = NewsAdapter()
+        newsAdapter = NewsAdapter{url ->
+            Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse(url)
+                startActivity(this)
+            }
+        }
         with(binding) {
             recycler.layoutManager = LinearLayoutManager(this@MainActivity)
             recycler.adapter = newsAdapter
             swipeLayout.apply {
-                setProgressViewEndTarget(false, 0)
                 setOnRefreshListener {
-                    isRefreshing = false
                     viewModel.getNews()
                 }
             }

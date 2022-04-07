@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lentatykalentarunewapp.databinding.ItemNewsBinding
 import com.lentatykalentarunewapp.domain.model.Article
 
-class NewsAdapter:ListAdapter<Article, NewsAdapter.ViewHolder>(DiffCallback) {
+class NewsAdapter(private val callback: (String)-> Unit):ListAdapter<Article, NewsAdapter.ViewHolder>(DiffCallback) {
 
     companion object{
         private val DiffCallback = object: DiffUtil.ItemCallback<Article>(){
@@ -22,11 +22,14 @@ class NewsAdapter:ListAdapter<Article, NewsAdapter.ViewHolder>(DiffCallback) {
         }
     }
 
-    class ViewHolder(
-        private val binding: ItemNewsBinding
+    inner class ViewHolder(
+        private val binding: ItemNewsBinding,
         ):RecyclerView.ViewHolder(binding.root){
             fun bind(item: Article){
                 binding.article = item
+                binding.root.setOnClickListener {
+                    callback(item.url)
+                }
             }
     }
 

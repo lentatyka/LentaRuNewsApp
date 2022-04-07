@@ -18,7 +18,7 @@ import javax.inject.Singleton
 abstract class NetworkModule {
 
     @Binds
-    abstract fun some(imba: NewsRepositoryImpl):NewsRepository
+    abstract fun some(repo: NewsRepositoryImpl):NewsRepository
 
     companion object{
         @Provides
