@@ -1,6 +1,6 @@
 ## NewsApplication
 
-[app img](./2022-04-08_00-30-58.png)
+![app img](./2022-04-08_00-30-58.png)
 
 **Just a little retrofit and dagger practice**
 
