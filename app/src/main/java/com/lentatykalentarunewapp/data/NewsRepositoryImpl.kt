@@ -13,7 +13,7 @@ class NewsRepositoryImpl @Inject constructor(
 
     override suspend fun getNews(): News {
         return mapper.mapNewsDtoToNews(
-            newsApi.getNews(Constants.API_KEY)
+            newsApi.getNews()
         )
     }
 
