@@ -1,6 +1,5 @@
 package com.lentatykalentarunewapp.data
 
-import com.lentatykalentarunewapp.common.Constants
 import com.lentatykalentarunewapp.data.network.NewsApi
 import com.lentatykalentarunewapp.domain.NewsRepository
 import com.lentatykalentarunewapp.domain.model.News
@@ -12,6 +11,6 @@ class NewsRepositoryImpl @Inject constructor(
 ) : NewsRepository {
 
     override suspend fun getNews(): News {
-        return mapper.mapNewsDtoToNews(newsApi.getNews(Constants.API_KEY))
+        return mapper.mapNewsDtoToNews(newsApi.getNews())
     }
 }
