@@ -16,6 +16,6 @@ class NewsRepositoryImpl(
         .build()
         .create(NewsApi::class.java)
     override suspend fun getNews(): News {
-        return mapper.mapNewsDtoToNews(newsApi.getNews(Constants.API_KEY))
+        return mapper.mapNewsDtoToNews(newsApi.getNews())
     }
 }

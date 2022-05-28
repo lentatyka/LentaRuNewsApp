@@ -16,7 +16,7 @@ class Mapper {
                 publishedAt = formatDateFromString(it.publishedAt),
                 title = it.title,
                 url = it.url,
-                urlToImage = it.urlToImage
+                urlToImage = it.urlToImage ?: ""
             )
         }
     )
