@@ -17,7 +17,7 @@ class Mapper @Inject constructor(){
                 publishedAt = formatDateFromString(it.publishedAt),
                 title = it.title,
                 url = it.url,
-                urlToImage = it.urlToImage
+                urlToImage = it.urlToImage ?: ""
             )
         }
     )
