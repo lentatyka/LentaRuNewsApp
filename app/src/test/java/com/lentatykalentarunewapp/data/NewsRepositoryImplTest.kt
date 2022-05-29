@@ -23,10 +23,6 @@ class NewsRepositoryImplTest{
     private val mapper = Mapper()
     private val repository = NewsRepositoryImpl(mapper, newsApi)
 
-    @Before
-    fun setUp(){
-        clearAllMocks()
-    }
 
     @Test
     fun `repository returned News with empty list`() = runTest{

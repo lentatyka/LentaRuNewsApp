@@ -4,8 +4,6 @@ import com.lentatykalentarunewapp.common.State
 import com.lentatykalentarunewapp.domain.model.News
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.launchIn
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject

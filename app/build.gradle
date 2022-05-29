@@ -72,9 +72,10 @@ dependencies {
     //Coroutines
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.2'
     // Optional -- Mockito framework
-    testImplementation "org.mockito:mockito-core:2.28.2"
+    testImplementation "org.mockito:mockito-core:4.0.0"
     // Optional -- mockito-kotlin
     testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
     // Optional -- Mockk framework
     testImplementation "io.mockk:mockk:1.12.4"
+    testImplementation 'app.cash.turbine:turbine:0.6.0'
 }
