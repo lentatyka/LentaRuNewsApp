@@ -1,6 +1,6 @@
 package com.lentatykalentarunewapp.domain
 
-import android.util.Log
+
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.lentatykalentarunewapp.common.State
@@ -12,7 +12,6 @@ import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
 import retrofit2.HttpException
-import java.io.IOException
 import kotlin.time.ExperimentalTime
 
 
