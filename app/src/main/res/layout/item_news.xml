@@ -11,45 +11,49 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="6dp">
-        <androidx.constraintlayout.widget.ConstraintLayout
+        app:cardCornerRadius="6dp"
+        android:layout_marginBottom="8dp">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="TEST" />
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_blue_light"
+            android:padding="8dp">
 
             <ImageView
                 android:id="@+id/iv_news_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title"
-                tools:srcCompat="@tools:sample/avatars"
-                android:contentDescription="@string/news_image" />
+                app:imageUrl= "@{article.urlToImage}"
+                app:error="@{@drawable/ic_error}"
+                app:loading="@{@drawable/ic_loading}"
+                android:contentDescription="@string/news_image"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/tv_author"
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_news_image"
-                tools:text="Author" />
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@id/iv_news_image"
+                android:text="@{article.title}"
+                android:textAlignment="inherit"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="TEST" />
 
             <TextView
                 android:id="@+id/tv_published_time"
+                android:text="@{@string/published_time(article.publishedAt)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_author"
+                android:textColor="@color/white"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
                 tools:text="12:00" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </layout>
