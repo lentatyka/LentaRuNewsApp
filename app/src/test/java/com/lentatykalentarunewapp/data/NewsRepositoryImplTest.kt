@@ -7,10 +7,8 @@ import com.lentatykalentarunewapp.data.network.dto.NewsDto
 import com.lentatykalentarunewapp.data.network.dto.SourceDto
 import com.lentatykalentarunewapp.domain.model.Article
 import com.lentatykalentarunewapp.domain.model.News
-import io.mockk.clearAllMocks
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.mock

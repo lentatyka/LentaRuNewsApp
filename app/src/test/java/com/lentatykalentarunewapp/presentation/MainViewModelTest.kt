@@ -9,8 +9,7 @@ import com.lentatykalentarunewapp.domain.NewsRepository
 import com.lentatykalentarunewapp.domain.model.Article
 import com.lentatykalentarunewapp.domain.model.News
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.*
-
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
