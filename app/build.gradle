@@ -34,6 +34,9 @@ android {
     buildFeatures{
         dataBinding true
     }
+    testOptions.unitTests {
+        returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -71,11 +74,15 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     //Coroutines
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.2'
-    // Optional -- Mockito framework
+
     testImplementation "org.mockito:mockito-core:4.0.0"
-    // Optional -- mockito-kotlin
     testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
-    // Optional -- Mockk framework
     testImplementation "io.mockk:mockk:1.12.4"
     testImplementation 'app.cash.turbine:turbine:0.6.0'
+
+    androidTestImplementation "junit:junit:4.13.2"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.2"
+    implementation "androidx.test:core-ktx:1.4.0"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.4.0"
+    implementation "androidx.test.espresso:espresso-idling-resource:3.4.0"
 }
