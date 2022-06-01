@@ -3,11 +3,9 @@ package com.lentatykalentarunewapp.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lentatykalentarunewapp.common.State
-import com.lentatykalentarunewapp.common.wrapEspressoIdlingResource
 import com.lentatykalentarunewapp.domain.GetNewsUseCase
 import com.lentatykalentarunewapp.domain.model.News
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -28,11 +26,9 @@ class MainViewModel @Inject constructor(
     }
 
     fun getNews() {
-        wrapEspressoIdlingResource {
-            viewModelScope.launch {
-                getNewsUseCase().collect {
-                    _state.value = it
-                }
+        viewModelScope.launch {
+            getNewsUseCase().collect {
+                _state.value = it
             }
         }
     }

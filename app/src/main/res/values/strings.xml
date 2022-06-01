@@ -2,4 +2,5 @@
     <string name="app_name">LentaRuNewApp</string>
     <string name="news_image">News image</string>
     <string name="published_time">Published: %s</string>
+    <string name="wrong_url">Bad url address</string>
 </resources>

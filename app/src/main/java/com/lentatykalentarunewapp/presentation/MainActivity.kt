@@ -34,21 +34,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setViewModel() {
-            viewModel.state.onEach {state ->
-                when(state){
-                    is State.Loading ->{
-                        binding.swipeLayout.isRefreshing = true
-                    }
-                    is State.Error ->{
-                        binding.swipeLayout.isRefreshing = false
-                        showError(state.message)
-                    }
-                    is State.Success ->{
-                        binding.swipeLayout.isRefreshing = false
-                        newsAdapter.submitList(state.result.articles)
-                    }
+        viewModel.state.onEach { state ->
+            when (state) {
+                is State.Loading -> {
+                    binding.swipeLayout.isRefreshing = true
                 }
-            }.launchIn(lifecycleScope)
+                is State.Error -> {
+                    binding.swipeLayout.isRefreshing = false
+                    showError(state.message)
+                }
+                is State.Success -> {
+                    binding.swipeLayout.isRefreshing = false
+                    newsAdapter.submitList(state.result.articles)
+                }
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun showError(message: String) {
@@ -56,11 +56,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setAdapter() {
-        newsAdapter = NewsAdapter{url ->
-            Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse(url)
-                startActivity(this)
-            }
+        newsAdapter = NewsAdapter { url ->
+            url?.let {
+                Intent(Intent.ACTION_VIEW).apply {
+                    data = Uri.parse(url)
+                    startActivity(this)
+                }
+            } ?: showError(getString(R.string.wrong_url))
         }
         with(binding) {
             recycler.layoutManager = LinearLayoutManager(this@MainActivity)

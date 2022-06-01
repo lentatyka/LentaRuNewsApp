@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lentatykalentarunewapp.databinding.ItemNewsBinding
 import com.lentatykalentarunewapp.domain.model.Article
 
-class NewsAdapter(private val callback: (String)-> Unit):ListAdapter<Article, NewsAdapter.ViewHolder>(DiffCallback) {
+class NewsAdapter(private val callback: (String?)-> Unit):ListAdapter<Article, NewsAdapter.ViewHolder>(DiffCallback) {
 
     companion object{
         private val DiffCallback = object: DiffUtil.ItemCallback<Article>(){

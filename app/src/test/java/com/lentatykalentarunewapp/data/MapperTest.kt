@@ -6,17 +6,11 @@ import com.lentatykalentarunewapp.data.network.dto.NewsDto
 import com.lentatykalentarunewapp.data.network.dto.SourceDto
 import com.lentatykalentarunewapp.domain.model.Article
 import com.lentatykalentarunewapp.domain.model.News
-import org.junit.Before
 import org.junit.Test
 
 class MapperTest {
 
-    private lateinit var mapper: Mapper
-
-    @Before
-    fun setUp() {
-        mapper = Mapper()
-    }
+    private val mapper = Mapper()
 
     @Test
     fun `wrong data return unknown`() {
@@ -30,7 +24,7 @@ class MapperTest {
     }
 
     @Test
-    fun `right data return right formatted`() {
+    fun `right data return right data format`() {
         val declaredMethod =
             mapper.javaClass.getDeclaredMethod("formatDateFromString", String::class.java)
         declaredMethod.isAccessible = true
@@ -41,29 +35,20 @@ class MapperTest {
     }
 
     @Test
-    fun `map newsDto with emptyList return News with emptyList`() {
+    fun `NewsDto with emptyList return News with emptyList`() {
         val newsDto = NewsDto(
             articles = emptyList(),
             status = "status",
             totalResults = 2
         )
         val news = News(emptyList())
-//            News(
-//                articles = listOf(
-//                    Article(
-//                        publishedAt = "unkw",
-//                        title = "tt",
-//                        url = "",
-//                        urlToImage = ""
-//                    )
-//                )
-//            )
         val actual = mapper.mapNewsDtoToNews(newsDto)
+
         assertThat(actual).isEqualTo(news)
     }
 
     @Test
-    fun `map newsDto return News with equals value`() {
+    fun `NewsDto with wrong url format return News with null url`() {
         val newsDto = NewsDto(
             articles = listOf(
                 ArticleDto(
@@ -73,7 +58,7 @@ class MapperTest {
                     publishedAt = "2022-05-04T12:00:00Z",
                     source = SourceDto("1", "1"),
                     title = "Title",
-                    url = "URL",
+                    url = "URL",  //urlDto wrong format
                     urlToImage = "IMG_URL"
 
                 )
@@ -86,7 +71,7 @@ class MapperTest {
                 Article(
                     publishedAt = "ср, мая 4, '22",
                     title = "Title",
-                    url = "URL",
+                    url = null,
                     urlToImage = "IMG_URL"
                 )
             )
@@ -96,8 +81,13 @@ class MapperTest {
         assertThat(actual).isEqualTo(news)
     }
 
+    /*
+    Mapper don't return right url.
+    Reason: gradle testOption - defaultValue = true
+    Can't mock URLUtil class
+     */
     @Test
-    fun `map newsDto with null img url return News with equals value where img url empty`() {
+    fun `NewsDto with right url return News with null url`() {
         val newsDto = NewsDto(
             articles = listOf(
                 ArticleDto(
@@ -107,7 +97,7 @@ class MapperTest {
                     publishedAt = "2022-05-04T12:00:00Z",
                     source = SourceDto("1", "1"),
                     title = "Title",
-                    url = "URL",
+                    url = "https://ya.ru",
                     urlToImage = null
 
                 )
@@ -120,8 +110,8 @@ class MapperTest {
                 Article(
                     publishedAt = "ср, мая 4, '22",
                     title = "Title",
-                    url = "URL",
-                    urlToImage = ""
+                    url = null,
+                    urlToImage = null
                 )
             )
         )

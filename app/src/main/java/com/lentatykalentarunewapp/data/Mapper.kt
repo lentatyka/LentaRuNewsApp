@@ -1,6 +1,7 @@
 package com.lentatykalentarunewapp.data
 
 import android.annotation.SuppressLint
+import android.webkit.URLUtil
 import com.lentatykalentarunewapp.data.network.dto.NewsDto
 import com.lentatykalentarunewapp.domain.model.Article
 import com.lentatykalentarunewapp.domain.model.News
@@ -16,8 +17,8 @@ class Mapper @Inject constructor(){
             Article(
                 publishedAt = formatDateFromString(it.publishedAt),
                 title = it.title,
-                url = it.url,
-                urlToImage = it.urlToImage ?: ""
+                url = if (URLUtil.isValidUrl(it.url)) it.url else null,
+                urlToImage = it.urlToImage
             )
         }
     )

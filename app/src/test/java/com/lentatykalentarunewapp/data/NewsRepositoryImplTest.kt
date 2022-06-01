@@ -53,8 +53,8 @@ class NewsRepositoryImplTest{
                 Article(
                     publishedAt = "ср, мая 4, '22",
                     title = "Title",
-                    url = "URL",
-                    urlToImage = ""
+                    url = null,
+                    urlToImage = null
                 )
             )
         )
